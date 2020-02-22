@@ -51,6 +51,15 @@ class APregistration(unittest.TestCase):
         #tworze obiekt klasy Select - odniesienie na gorze(odnajduje web element)
         day_of_birth_select=Select(driver.find_element_by_id('days'))
         day_of_birth_select.select_by_value(birthday)
+
+        month_of_birth_select=Select(driver.find_element_by_id('months'))
+        month_of_birth_select.select_by_value(birthmont)
+
+        Select(driver.find_element_by_id('years')).select_by_value(birthyear)
+        #to samo jest ponizej a wyzej jest po prostu krotsze
+        #year_of_birth_select=Select(driver.find_element_by_id('years'))
+        #year_of_birth_select.select_by_value(birthyear)
+
         sleep(6)
 
 
