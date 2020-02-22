@@ -1,0 +1,27 @@
+Warunki wstepne:
+Wejdź na automationpractice.com
+ 
+Kroki:
+1. Kliknij "Sign in"
+2. Wpisz email
+3. Kliknij "Create an account"
+4. Wybierz tytuł
+5. Wpisz imię
+6. Wpisz nazwisko
+7. (Sprawdź poprawność maila)
+8. Wpisz niepoprawne hasło
+9. Wybierz datę urodzenia
+10. (Sprawdź imię)
+11. (Sprawdź nazwisko)
+12. Podaj adres
+13. Podaj miasto
+14. Wybierz stan
+15. Wpisz kod pocztowy
+16. Wybierz kraj
+17. Wpisz numer telefonu
+18. Wpisz alias adresu
+19. Kliknij "Register"
+ 
+Oczekiwany rezultat:
+Konto nie zostaje utworzone
+Wysakakuje błąd o złym mailu
