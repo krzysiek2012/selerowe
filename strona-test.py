@@ -20,24 +20,29 @@ class APregistration(unittest.TestCase):
         self.driver=webdriver.Firefox()
         self.driver.maximize_window()
         self.driver.get('http://automationpractice.com/index.php')
+        #po tej funkcji ponizej usuwamy wszystkie sleep'y
+        self.driver.implicitly_wait(2)
 
     def testCorrectRegistration(self):
         driver=self.driver
         #odnajdz sign in
+
         sign_in=driver.find_element_by_class_name('login')
         #kliknij
         sign_in.click()
         #wpisz adress email
         #to tak na marginesie, 'str' object has no attribute 'input' to znaczy ze po kropce wchodzi do atrybutw w kazdym razie uwarzaj na to, tam jest po prostu nazwa
+
         email_input=driver.find_element_by_id('email_create')
         email_input.send_keys(email)
+
         #kliknij przycisk 'create an account'
         create_btn=driver.find_element_by_id('SubmitCreate')
         create_btn.click()
-        sleep(2)
+
         #Wybierz tytule - odnajduje i klika od razu
         driver.find_element_by_id('id_gender1').click()
-        sleep(5)
+
         #Wpisuje imie
         driver.find_element_by_id('customer_firstname').send_keys(fristname)
         #wpisuje nazwisko
@@ -45,12 +50,19 @@ class APregistration(unittest.TestCase):
         #Sprawdzam email
         email_text=driver.find_element_by_id('email').get_attribute('value')
         assert email_text == email
+
         #wpisz niepoprawne haslo
         driver.find_element_by_id('passwd').send_keys(invalid_password)
+
         #wybierz date urodzenia
         #tworze obiekt klasy Select - odniesienie na gorze(odnajduje web element)
         day_of_birth_select=Select(driver.find_element_by_id('days'))
         day_of_birth_select.select_by_value(birthday)
+        #day_of_birth_select=driver.find_element_by_id('days')
+        #day_of_birth_select=Select(day_of_birth_select)
+        #day_of_birth_select.select_by_value(birthday)
+        #magi pajtona, nie wiem juz sam, mozesz sprawdzic w budowie tej klasy
+        #bo nie wiem jak inaczej 
 
         month_of_birth_select=Select(driver.find_element_by_id('months'))
         month_of_birth_select.select_by_value(birthmont)
@@ -60,7 +72,7 @@ class APregistration(unittest.TestCase):
         #year_of_birth_select=Select(driver.find_element_by_id('years'))
         #year_of_birth_select.select_by_value(birthyear)
 
-        sleep(6)
+
 
 
     def tearDown(self):
