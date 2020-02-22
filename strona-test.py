@@ -21,6 +21,9 @@ class APregistration(unittest.TestCase):
         self.driver.maximize_window()
         self.driver.get('http://automationpractice.com/index.php')
         #po tej funkcji ponizej usuwamy wszystkie sleep'y
+        #po kazdym kroku CHYBA czeka max 2s
+        #mozesz mozesz dodac linijke ponizej z wartoscia 0 i w tedy tak jak by wylaczasz, to taki workaround
+        #dzieki temu nie musimy dawac sleepa ale na koncu mozna sobie dodac aby wiedzie gdzie jestesmy
         self.driver.implicitly_wait(2)
 
     def testCorrectRegistration(self):
@@ -58,11 +61,13 @@ class APregistration(unittest.TestCase):
         #tworze obiekt klasy Select - odniesienie na gorze(odnajduje web element)
         day_of_birth_select=Select(driver.find_element_by_id('days'))
         day_of_birth_select.select_by_value(birthday)
+        #to ci pomoze zrozumiec jak to dziala
+        print(type(day_of_birth_select))
         #day_of_birth_select=driver.find_element_by_id('days')
         #day_of_birth_select=Select(day_of_birth_select)
         #day_of_birth_select.select_by_value(birthday)
         #magi pajtona, nie wiem juz sam, mozesz sprawdzic w budowie tej klasy
-        #bo nie wiem jak inaczej 
+        #bo nie wiem jak inaczej
 
         month_of_birth_select=Select(driver.find_element_by_id('months'))
         month_of_birth_select.select_by_value(birthmont)
@@ -72,12 +77,17 @@ class APregistration(unittest.TestCase):
         #year_of_birth_select=Select(driver.find_element_by_id('years'))
         #year_of_birth_select.select_by_value(birthyear)
 
+        #ma inny id dlatego ok w porownaniu do tego pierwszego firstname
+        name_address=driver.find_element_by_id('firstname').send_keys(firstname)
+        print(name_address)
 
 
+        sleep(5)
 
     def tearDown(self):
         self.driver.quit()
 
 
 if __name__=='__main__':
+    #vervosity- apt help w teminalu, super moc krowy? tak jak by cos bylo wiecej widziec, wypisuje ktory test robi i ze jest ok, jak bym to usunal to nic nie widzialbym co byloby slabe, po prostu dodatkowa informacja, mozna dac wartosc 1, cos sie zmieni
     unittest.main(verbosity=2)
