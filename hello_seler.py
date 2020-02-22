@@ -8,29 +8,33 @@ import unittest
 # z modulu unittest
 
 class WsbPLcheck(unittest.TestCase):
+    """
+    Scenariusz testowy
+    """
 
 
     #Warunki wstepne
     #(przygotowanie testu)
-        def setUp(self):
-            self.driver = webdriver.Firefox()
-            self.driver.maximize_window()
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.maximize_window()
 
     #tutaj wlasciwe testy
-        def testWsb(self):
+    def testWsb(self):
             #tworze skrot driver = self driver i dalej nie trzeba tyle pisac
-            driver=self.driver
+        driver=self.driver
         #wejdz na strone
-            driver.get('http://www.wsb.pl')
+        driver.get('http://www.google.pl')
         #sprawdz, czy "Bankowe" znajduja sie w tytule strony, funkcja assert sprawza
-            self.assertIn('Bankowe', driver.title)
-            print(driver.title)
+        sleep(5)
+        self.assertIn('google', driver.title)
+        print(driver.title)
 
     #sprzatanie po testach
-        def tearDown(self):
-            self.driver.quit()
+    def tearDown(self):
+        self.driver.quit()
 
-    #jesli to glowny plik
-        if __name__=='__main__':
-        #uruchom metode main, ktora uruchomi testy
-            unittest.main(verbosity=2)
+#jesli to glowny plik
+if __name__=='__main__':
+#uruchom metode main, ktora uruchomi testy
+        unittest.main(verbosity=2)
