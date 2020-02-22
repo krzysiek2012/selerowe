@@ -2,10 +2,16 @@
 from selenium import webdriver
 from time import sleep
 import unittest
-
+#importuje to cos ponizek, zeby przy seleccie daty nie trzebabylo tam przepisywac, nie ladnie i zdecydowanie trudniej
+#Klasa z duzej litery
+from selenium.webdriver.support.ui import Select
 email = 'misiek@kokos.com'
 fristname = 'Misiowe'
-seccondname = 'Kokosowe'
+secondname = 'Kokosowe'
+invalid_password = 'jakies_haslo'
+birthday='1'
+birthmont='1'
+birthyear='1900'
 
 
 #klasa o dowolnej nazwie
@@ -33,10 +39,19 @@ class APregistration(unittest.TestCase):
         driver.find_element_by_id('id_gender1').click()
         sleep(5)
         #Wpisuje imie
-        driver.find_element_by_id('customer_firstname').send_keys(firstname)
+        driver.find_element_by_id('customer_firstname').send_keys(fristname)
         #wpisuje nazwisko
-        driver.find_element_by_id('customer_lastname').send_keys(seccondname)
+        driver.find_element_by_id('customer_lastname').send_keys(secondname)
         #Sprawdzam email
+        email_text=driver.find_element_by_id('email').get_attribute('value')
+        assert email_text == email
+        #wpisz niepoprawne haslo
+        driver.find_element_by_id('passwd').send_keys(invalid_password)
+        #wybierz date urodzenia
+        #tworze obiekt klasy Select - odniesienie na gorze(odnajduje web element)
+        day_of_birth_select=Select(driver.find_element_by_id('days'))
+        day_of_birth_select.select_by_value(birthday)
+        sleep(6)
 
 
     def tearDown(self):
