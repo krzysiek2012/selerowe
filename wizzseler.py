@@ -11,7 +11,7 @@ lastname='Misoiwe'
 gender='male'
 country_code = '+48'
 phone='000000000'
-email='koko#mysiek.com'
+invalid_email='koko#mysiek.com'
 haslo='kiki09867K'
 valid_country = "Chiny"
 
@@ -21,7 +21,7 @@ class WizzairRegistration(unittest.TestCase):
         Warunki wstepne
         """
         #przegladarka wlaczona
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.get("https://wizzair.com/pl-pl#/")
 
@@ -76,7 +76,7 @@ class WizzairRegistration(unittest.TestCase):
 
         wpisz_phone=driver.find_element_by_xpath('//input[@name="phoneNumberValidDigits"]').send_keys(phone)
 
-        wpisz_mail=driver.find_element_by_xpath('//input[@name="email"]').send_keys(email)
+        wpisz_mail=driver.find_element_by_xpath('//input[@name="email"]').send_keys(invalid_email)
 
         wpisz_passwd=driver.find_element_by_xpath('//input[@name="password"]').send_keys(haslo)
 
