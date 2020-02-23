@@ -5,6 +5,10 @@ import unittest
 #importuje to cos ponizek, zeby przy seleccie daty nie trzebabylo tam przepisywac, nie ladnie i zdecydowanie trudniej
 #Klasa z duzej litery
 from selenium.webdriver.support.ui import Select
+#webdriver wait in python, zawsze mozna w google szukac, podobno.. broser==driver
+#
+from selenium .webdriver.support import expected_conditions as EC
+
 email = 'misiek@kokos.com'
 fristname = 'Misiowe'
 secondname = 'Kokosowe'
@@ -24,6 +28,8 @@ class APregistration(unittest.TestCase):
         #po kazdym kroku CHYBA czeka max 2s
         #mozesz mozesz dodac linijke ponizej z wartoscia 0 i w tedy tak jak by wylaczasz, to taki workaround
         #dzieki temu nie musimy dawac sleepa ale na koncu mozna sobie dodac aby wiedzie gdzie jestesmy
+        #maksymalny czas oczekiwania, przed findami i innymi, bo selenium potrafi
+        #sobie wlasnie tak dlugo czekac, a to pomaga ponoc
         self.driver.implicitly_wait(2)
 
     def testCorrectRegistration(self):
@@ -78,10 +84,14 @@ class APregistration(unittest.TestCase):
         #year_of_birth_select.select_by_value(birthyear)
 
         #ma inny id dlatego ok w porownaniu do tego pierwszego firstname
-        name_address=driver.find_element_by_id('firstname').send_keys(firstname)
-        print(name_address)
+        name_address=driver.find_element_by_id('firstname').get_attribute('value')
+        #porownaj wyswietlone imiona
+        assert firstname == name_presented
+        self assertEqual(firstname, name_presented+'dd', 'ZLE IMIE!!' )
 
 
+
+        #poczekaj te 5 sek, bym widzial na jakim miejscu jestesmy
         sleep(5)
 
     def tearDown(self):
